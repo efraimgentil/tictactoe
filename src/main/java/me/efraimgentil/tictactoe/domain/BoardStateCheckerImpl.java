@@ -35,9 +35,10 @@ public class BoardStateCheckerImpl implements BoardStateChecker {
             for (int c = 0; c + expectedPoints <= row.length; c++) {
                 foundMoves.clear();
                 char playerChar = row[c];
+                if(playerChar ==  Board.EMPTY_POSITION_CHAR) continue; //skip if empty
                 foundMoves.add(toMove(r, c));
                 for (int n = 1; n < expectedPoints; n++) {
-                    if (row[n] == Board.EMPTY_POSITION_CHAR || playerChar != row[c + n]) {
+                    if (row[c + n] == Board.EMPTY_POSITION_CHAR || playerChar != row[c + n]) {
                         break;
                     }
                     foundMoves.add(toMove(r, c + n));
@@ -51,6 +52,7 @@ public class BoardStateCheckerImpl implements BoardStateChecker {
             for (int c = 0; c < row.length; c++) {
                 foundMoves.clear();
                 char playerChar = boardArr[r][c];
+                if(playerChar ==  Board.EMPTY_POSITION_CHAR) continue; //skip if empty
                 foundMoves.add(toMove(r, c));
                 for (int n = 1; n < expectedPoints && n < boardArr.length; n++) {
                     if (boardArr[n][c] == Board.EMPTY_POSITION_CHAR || playerChar != boardArr[n][c]) {
@@ -67,6 +69,7 @@ public class BoardStateCheckerImpl implements BoardStateChecker {
             for (int c = 0; c + expectedPoints <= row.length; c++) {
                 foundMoves.clear();
                 char playerChar = boardArr[r][c];
+                if(playerChar ==  Board.EMPTY_POSITION_CHAR) continue; //skip if empty
                 foundMoves.add(toMove(r, c));
                 for (int n = 1; n < expectedPoints && r + n < boardArr.length; n++) {
                     if (boardArr[r + n][c + n] == Board.EMPTY_POSITION_CHAR || playerChar != boardArr[r + n][c + n]) {
@@ -83,6 +86,7 @@ public class BoardStateCheckerImpl implements BoardStateChecker {
             for (int c = (row.length - 1); c - (expectedPoints - 1) >= 0; c--) {
                 foundMoves.clear();
                 char playerChar = boardArr[r][c];
+                if(playerChar ==  Board.EMPTY_POSITION_CHAR) continue; //skip if empty
                 foundMoves.add(toMove(r, c));
                 for (int n = 1; n < expectedPoints && r + n < boardArr.length && c - n >= 0; n++) {
                     if (boardArr[r + n][c - n] == Board.EMPTY_POSITION_CHAR || playerChar != boardArr[r + n][c - n]) {

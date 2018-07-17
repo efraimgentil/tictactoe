@@ -17,8 +17,10 @@ import java.util.Properties;
 public class Application {
 
     public static void main(String ... args) throws IOException, InvalidConfigException, InvalidMoveException {
-        URL resource = Application.class.getResource("/config.properties");
-        String path = resource.getPath();
+        //URL resource = Application.class.getResource("/config.properties");
+        if(args.length == 0)
+            throw new IllegalArgumentException("Arg with configuration file path not found");
+        String path = args[0];
         Game game = new GameBuilder().buildGame(getPropertiesFromFile(path));
         game.startGame();
     }
@@ -26,7 +28,7 @@ public class Application {
     public static Properties getPropertiesFromFile(String path) throws IOException {
         File file = new File(path);
         if(!file.exists()){
-            throw new IllegalArgumentException("Configuration file does not exists");
+            throw new IllegalArgumentException(String.format("Configuration file (%s) does not exists" , path));
         }else{
             String substring = path.substring(path.lastIndexOf("."));
             if(!substring.contains(".properties")){

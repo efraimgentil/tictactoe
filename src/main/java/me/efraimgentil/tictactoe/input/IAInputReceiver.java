@@ -21,6 +21,7 @@ public class IAInputReceiver implements PlayerInputHandler {
     public Move handle(Player iaPLayer, Board board, Queue<Player> playerOrder) {
         maxPlayer = iaPLayer;
         try {
+            System.out.println(String.format("IA %s turn, she is thinking, don't rush her" , maxPlayer.getPlayerChar()));
             Move move = miniMax(board, iaPLayer, new LinkedList<>(playerOrder), 0);
             System.out.println(String.format("IA %s move (%s)" , maxPlayer.getPlayerChar() , move.getRow() +","+move.getColumn()));
             return move;
