@@ -1,17 +1,13 @@
 package me.efraimgentil.tictactoe;
 
 import me.efraimgentil.tictactoe.domain.Game;
-import me.efraimgentil.tictactoe.domain.GameBuilder;
+import me.efraimgentil.tictactoe.domain.GameFactory;
 import me.efraimgentil.tictactoe.exception.InvalidConfigException;
 import me.efraimgentil.tictactoe.exception.InvalidMoveException;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Properties;
 
 public class Application {
@@ -21,7 +17,7 @@ public class Application {
         if(args.length == 0)
             throw new IllegalArgumentException("Arg with configuration file path not found");
         String path = args[0];
-        Game game = new GameBuilder().buildGame(getPropertiesFromFile(path));
+        Game game = new GameFactory().buildGame(getPropertiesFromFile(path));
         game.startGame();
     }
 

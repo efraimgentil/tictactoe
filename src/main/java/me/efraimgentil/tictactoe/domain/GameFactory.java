@@ -6,7 +6,7 @@ import me.efraimgentil.tictactoe.input.IAInputReceiver;
 
 import java.util.*;
 
-public class GameBuilder {
+public class GameFactory {
 
     public static final String BOARD_SIZE = "game.boardSize";
     public static final String PLAYER_ONE_CHAR = "game.playerOneChar";

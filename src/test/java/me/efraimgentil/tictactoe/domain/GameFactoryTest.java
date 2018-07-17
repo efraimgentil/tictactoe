@@ -9,19 +9,19 @@ import java.util.Properties;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class GameBuilderTest {
+public class GameFactoryTest {
 
-    GameBuilder builder;
+    GameFactory builder;
 
     @Before
     public void setUp(){
-        builder = new GameBuilder();
+        builder = new GameFactory();
     }
 
     @Test(expected = InvalidConfigException.class)
     public void shouldThrowErrorIfBoardSizeLessThanThree() throws InvalidConfigException {
         Properties properties = new Properties();
-        properties.setProperty(GameBuilder.BOARD_SIZE , "2");
+        properties.setProperty(GameFactory.BOARD_SIZE , "2");
 
         builder.getBoardSize(properties);
     }
@@ -29,7 +29,7 @@ public class GameBuilderTest {
     @Test(expected = InvalidConfigException.class)
     public void shouldThrowErrorIfBoardSizeIsBiggerThanTen() throws InvalidConfigException {
         Properties properties = new Properties();
-        properties.setProperty(GameBuilder.BOARD_SIZE , "11");
+        properties.setProperty(GameFactory.BOARD_SIZE , "11");
 
         builder.getBoardSize(properties);
     }
@@ -70,9 +70,9 @@ public class GameBuilderTest {
     @Test
     public void shouldReturnThePlayerListWithTwoPlayers() throws InvalidConfigException {
         Properties properties = new Properties();
-        properties.setProperty( GameBuilder.PLAYER_ONE_CHAR , "A");
-        properties.setProperty( GameBuilder.PLAYER_TWO_CHAR , "B");
-        properties.setProperty( GameBuilder.PLAYER_IA_CHAR , "C");
+        properties.setProperty( GameFactory.PLAYER_ONE_CHAR , "A");
+        properties.setProperty( GameFactory.PLAYER_TWO_CHAR , "B");
+        properties.setProperty( GameFactory.PLAYER_IA_CHAR , "C");
 
         List<Player> playerList = builder.getPlayerList(properties);
 
@@ -88,9 +88,9 @@ public class GameBuilderTest {
     @Test
     public void shouldReturnThePlayerListWithTwoPlayersAndTheIAPlayer() throws InvalidConfigException {
         Properties properties = new Properties();
-        properties.setProperty( GameBuilder.PLAYER_ONE_CHAR , "A");
-        properties.setProperty( GameBuilder.PLAYER_TWO_CHAR , "B");
-        properties.setProperty( GameBuilder.PLAYER_IA_CHAR , "C");
+        properties.setProperty( GameFactory.PLAYER_ONE_CHAR , "A");
+        properties.setProperty( GameFactory.PLAYER_TWO_CHAR , "B");
+        properties.setProperty( GameFactory.PLAYER_IA_CHAR , "C");
 
         List<Player> playerList = builder.getPlayerList(properties);
 
@@ -106,8 +106,8 @@ public class GameBuilderTest {
     @Test(expected = InvalidConfigException.class)
     public void shouldThrowErrorIfPlayerOneAndPlayerTwoHaveTheSameCharacter() throws InvalidConfigException {
         Properties properties = new Properties();
-        properties.setProperty( GameBuilder.PLAYER_ONE_CHAR , "A");
-        properties.setProperty( GameBuilder.PLAYER_TWO_CHAR , "A");
+        properties.setProperty( GameFactory.PLAYER_ONE_CHAR , "A");
+        properties.setProperty( GameFactory.PLAYER_TWO_CHAR , "A");
 
         builder.getPlayerList(properties);
     }
@@ -115,9 +115,9 @@ public class GameBuilderTest {
     @Test(expected = InvalidConfigException.class)
     public void shouldThrowErrorIfPlayerIAAndPlayerTwoHaveTheSameCharacter() throws InvalidConfigException {
         Properties properties = new Properties();
-        properties.setProperty( GameBuilder.PLAYER_ONE_CHAR , "A");
-        properties.setProperty( GameBuilder.PLAYER_TWO_CHAR , "B");
-        properties.setProperty( GameBuilder.PLAYER_IA_CHAR , "B");
+        properties.setProperty( GameFactory.PLAYER_ONE_CHAR , "A");
+        properties.setProperty( GameFactory.PLAYER_TWO_CHAR , "B");
+        properties.setProperty( GameFactory.PLAYER_IA_CHAR , "B");
 
         builder.getPlayerList(properties);
     }
@@ -125,9 +125,9 @@ public class GameBuilderTest {
     @Test(expected = InvalidConfigException.class)
     public void shouldThrowErrorIfPlayerIAAndPlayerOneHaveTheSameCharacter() throws InvalidConfigException {
         Properties properties = new Properties();
-        properties.setProperty( GameBuilder.PLAYER_ONE_CHAR , "A");
-        properties.setProperty( GameBuilder.PLAYER_TWO_CHAR , "B");
-        properties.setProperty( GameBuilder.PLAYER_IA_CHAR , "A");
+        properties.setProperty( GameFactory.PLAYER_ONE_CHAR , "A");
+        properties.setProperty( GameFactory.PLAYER_TWO_CHAR , "B");
+        properties.setProperty( GameFactory.PLAYER_IA_CHAR , "A");
 
         builder.getPlayerList(properties);
     }
@@ -135,10 +135,10 @@ public class GameBuilderTest {
     @Test
     public void shouldSuccessFullyCreateAGame() throws InvalidConfigException {
         Properties properties = new Properties();
-        properties.setProperty(GameBuilder.BOARD_SIZE , "3");
-        properties.setProperty( GameBuilder.PLAYER_ONE_CHAR , "A");
-        properties.setProperty( GameBuilder.PLAYER_TWO_CHAR , "B");
-        properties.setProperty( GameBuilder.PLAYER_IA_CHAR , "C");
+        properties.setProperty(GameFactory.BOARD_SIZE , "3");
+        properties.setProperty( GameFactory.PLAYER_ONE_CHAR , "A");
+        properties.setProperty( GameFactory.PLAYER_TWO_CHAR , "B");
+        properties.setProperty( GameFactory.PLAYER_IA_CHAR , "C");
 
         Game game = builder.buildGame(properties);
 
