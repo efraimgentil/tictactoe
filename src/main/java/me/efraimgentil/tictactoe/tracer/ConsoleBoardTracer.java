@@ -7,7 +7,7 @@ import java.nio.CharBuffer;
 import java.util.Collections;
 import java.util.stream.Collectors;
 
-public class ConsoleMatrixTracer implements BoardTracer {
+public class ConsoleBoardTracer implements BoardTracer {
 
     @Override
     public void draw(Board board) {
